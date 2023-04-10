@@ -2,8 +2,13 @@ package com.bank.management.system;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener {
+    JButton login, signUp, clear;
+    JTextField cardTextField;
+    JPasswordField pinTextField;
     Login(){
         setTitle("AUTOMATED TELLER MACHINE");//Setting Title\
 
@@ -35,8 +40,9 @@ public class Login extends JFrame {
         /*
         JTextField helps to create text field, where we can put values;
          */
-        JTextField cardTextField = new JTextField();
-        cardTextField.setBounds(300,150,250,30);
+        cardTextField = new JTextField();
+        cardTextField.setBounds(300,150,230,30);
+        cardTextField.setFont(new Font("Arial",Font.BOLD,14));// making the text Input larger
         add(cardTextField);
 
 
@@ -45,9 +51,40 @@ public class Login extends JFrame {
         pin.setBounds(120,220,250,30);
         add(pin);
 
-        JTextField pinTextField = new JTextField();
-        pinTextField.setBounds(300,220,250,30);
+        pinTextField = new JPasswordField();
+        pinTextField.setBounds(300,220,230,30);
+        pinTextField.setFont(new Font("Arial",Font.BOLD,14)); // making the pin Input larger
         add(pinTextField);
+
+         /*
+        Making the Sign-in Button;
+         */
+        login = new JButton("SIGN IN");
+        login.setBounds(300, 300, 100, 30);
+        login.setBackground(Color.BLACK);
+        login.setForeground(Color.WHITE);
+        login.addActionListener(this);// it will add the functionality of working the dummy login button
+        add(login);
+
+        /*
+        Making Clear Button, It will erase the information;
+         */
+        clear = new JButton("CLEAR");
+        clear.setBounds(430, 300, 100, 30);
+        clear.setBackground(Color.BLACK);
+        clear.setForeground(Color.WHITE);
+        clear.addActionListener(this);// it will add the functionality of working the dummy clear button
+        add(clear);
+
+         /*
+        Making signUp Button;
+         */
+        signUp = new JButton("SIGN UP");
+        signUp.setBounds(300, 350, 230, 30);
+        signUp.setBackground(Color.BLACK);
+        signUp.setForeground(Color.WHITE);
+        signUp.addActionListener(this);// it will add the functionality of working the dummy signUp button
+        add(signUp);
 
         /*
         Setting the background to white
@@ -67,6 +104,20 @@ public class Login extends JFrame {
         we are determining the location of this frame
          */
         setLocation(1150,200);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == clear) {
+            /*
+            since we don't give any input in text field, so it will be empty;
+             */
+            cardTextField.setText("");
+            pinTextField.setText("");
+        } else if (e.getSource() == login) {
+
+        } else if (e.getSource() == signUp) {
+
+        }
     }
     public static void main(String[] args) {
         new Login();
